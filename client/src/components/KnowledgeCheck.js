@@ -123,6 +123,6 @@ KnowledgeCheck.propTypes = {
   answers: PropTypes.array,
   feedback: PropTypes.string,
   question: PropTypes.object,
-  selectedIndex: PropTypes.number,
+  selectedIndex: PropTypes.string,
   answerSubmitted: PropTypes.bool,
 };
