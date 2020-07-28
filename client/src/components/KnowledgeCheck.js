@@ -67,6 +67,7 @@ export const KnowledgeCheck = ({
             // button list is immutable there's no concern of the list changing and
             // causing weird bugs.
             <label
+              for="answers"
               key={index}
               className="md:w-2/3 block text-gray-500 font-bold lg:ml-16 md:ml-4 my-8"
             >
