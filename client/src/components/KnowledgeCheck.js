@@ -85,7 +85,7 @@ export const KnowledgeCheck = ({
           {!submitted ? (
             <div className="flex justify-center">
               <button
-                className={`mt-4 text-white font-bold py-2 px-4 rounded-full ${getSubmitButtonStyle(
+                className={`mt-4 text-white w-40 font-bold py-2 px-4 rounded-full ${getSubmitButtonStyle(
                   radioState !== ''
                 )}`}
               >
