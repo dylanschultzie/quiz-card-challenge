@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-export const KnowledgeCheck = ({ answers, feedback, question }) => {
-  const [radioState, setRadioState] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+export const KnowledgeCheck = ({ answers, feedback, question, selectedIndex, answerSubmitted }) => {
+  const [radioState, setRadioState] = useState(selectedIndex);
+  const [submitted, setSubmitted] = useState(answerSubmitted);
 
   const isCorrect = (index) => {
     return answers[index].isCorrect;

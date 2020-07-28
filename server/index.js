@@ -1,10 +1,12 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const db = {
   knowledgeCheckBlocks: [
     {
+      _id: 0,
       question: {
         text: 'What is this a picture of?',
         media: {
@@ -24,6 +26,8 @@ const db = {
         },
       ],
       feedback: 'I just love cookies and a warm cup of coffee!',
+      selectedIndex: 0,
+      answerSubmitted: false,
     },
   ],
 };
@@ -32,10 +36,11 @@ function server() {
   const app = express();
   const port = process.env.PORT || 5000;
 
+  app.use(bodyParser.json());
   app.use(morgan('dev'));
   app.use(cors());
 
-  app.get('/knowledge-check-blocks', (req, res) => res.send(db.knowledgeCheckBlocks));
+  require('./routes/knowledgeCheckRoutes')(app);
 
   app.start = app.listen.bind(app, port, () => console.log(`Listening on port ${port}`));
 
