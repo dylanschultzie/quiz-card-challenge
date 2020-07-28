@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 export const KnowledgeCheck = ({
   _id,
@@ -66,7 +67,6 @@ export const KnowledgeCheck = ({
             // button list is immutable there's no concern of the list changing and
             // causing weird bugs.
             <label
-              for="answers"
               key={index}
               className="md:w-2/3 block text-gray-500 font-bold lg:ml-16 md:ml-4 my-8"
             >
@@ -116,4 +116,13 @@ export const KnowledgeCheck = ({
       </div>
     </div>
   );
+};
+
+KnowledgeCheck.propTypes = {
+  _id: PropTypes.number,
+  answers: PropTypes.array,
+  feedback: PropTypes.string,
+  question: PropTypes.object,
+  selectedIndex: PropTypes.number,
+  answerSubmitted: PropTypes.bool,
 };
