@@ -27,6 +27,14 @@ export const KnowledgeCheck = ({ answers, feedback, question }) => {
     }
   };
 
+  const getSubmitButtonStyle = (enabled) => {
+    return enabled ? 'bg-blue-500 hover:bg-blue-700' : 'bg-gray-500';
+  };
+
+  const getAnswerStyle = (correct) => {
+    return correct ? 'bg-green-500' : 'bg-red-500';
+  };
+
   return (
     <div className="max-w-xlg rounded overflow-hidden shadow-lg">
       <div className="p-12">
@@ -37,7 +45,10 @@ export const KnowledgeCheck = ({ answers, feedback, question }) => {
             // Generally I wouldn't use the array index as a key, but since the radio
             // button list is immutable there's no concern of the list changing and
             // causing weird bugs.
-            <label key={index} className="md:w-2/3 block text-gray-500 font-bold">
+            <label
+              key={index}
+              className="md:w-2/3 block text-gray-500 font-bold lg:ml-16 md:ml-4 my-8"
+            >
               <input
                 className="mr-8 leading-tight"
                 type="radio"
@@ -52,20 +63,24 @@ export const KnowledgeCheck = ({ answers, feedback, question }) => {
           {!submitted ? (
             <div className="flex justify-center">
               <button
-                className={`mt-4 text-white font-bold py-2 px-4 rounded-full ${
-                  radioState !== '' ? 'bg-blue-500 hover:bg-blue-700' : 'bg-gray-500'
-                }`}
+                className={`mt-4 text-white font-bold py-2 px-4 rounded-full ${getSubmitButtonStyle(
+                  radioState !== ''
+                )}`}
               >
                 Submit
               </button>
             </div>
           ) : (
             <div>
-              <div className="justify-center">
-                <p>{isCorrect(radioState) ? 'Correct!' : 'Incorrect'}</p>
-                <p>{feedback}</p>
+              <div className={`py-4 bg-opacity-25 ${getAnswerStyle(isCorrect(radioState))}`}>
+                <div className="flex justify-center my-4 font-bold">
+                  <p>{isCorrect(radioState) ? 'Correct!' : 'Incorrect'}</p>
+                </div>
+                <div className="flex justify-center my-4 text-gray-600">
+                  <p>{feedback}</p>
+                </div>
               </div>
-              <div className="flex justify-center">
+              <div className="flex justify-center my-4">
                 <button
                   className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
                   onClick={handleRetake}
