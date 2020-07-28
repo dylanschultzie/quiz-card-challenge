@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const KnowledgeCheck = ({ answers, feedback, question }) => {
   const [radioState, setRadioState] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
   return (
     <div className="max-w-lg rounded overflow-hidden shadow-lg">
@@ -11,8 +12,8 @@ export const KnowledgeCheck = ({ answers, feedback, question }) => {
         <img className="mb-4 w-full" src={question.media.url} alt={question.text} />
         <form
           onSubmit={(event) => {
+            setSubmitted(true);
             event.preventDefault();
-            setRadioState(event.target.elements['answers'].value);
           }}
         >
           {answers.map((answer) => (
@@ -22,15 +23,41 @@ export const KnowledgeCheck = ({ answers, feedback, question }) => {
                 type="radio"
                 name="answers"
                 value={answer.text}
+                checked={answer.text === radioState}
+                onChange={(event) => {
+                  setRadioState(event.target.value);
+                  event.preventDefault();
+                }}
               />
               <span className="text-gray-700 text-base">{answer.text}</span>
             </label>
           ))}
-          <div className="flex justify-center">
-            <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-              Submit
-            </button>
-          </div>
+          {!submitted ? (
+            <div className="flex justify-center">
+              <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                Submit
+              </button>
+            </div>
+          ) : (
+            <div>
+              <div className="justify-center">
+                <p>Correct or not?</p>
+                <p>{feedback}</p>
+              </div>
+              <div className="w-full">
+                <button
+                  className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                  onClick={(event) => {
+                    setSubmitted(false);
+                    setRadioState('');
+                    event.preventDefault();
+                  }}
+                >
+                  Take Again
+                </button>
+              </div>
+            </div>
+          )}
         </form>
       </div>
     </div>
