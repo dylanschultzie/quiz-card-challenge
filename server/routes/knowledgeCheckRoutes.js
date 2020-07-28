@@ -1,3 +1,5 @@
+const db = require('../db');
+
 module.exports = (app) => {
   app.get('/knowledge-check-blocks', (req, res) => res.send(db.knowledgeCheckBlocks));
 
