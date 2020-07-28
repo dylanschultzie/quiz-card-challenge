@@ -2,12 +2,19 @@ import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 export const KnowledgeCheck = ({ answers, feedback, question }) => {
+  const [radioState, setRadioState] = useState('');
+
   return (
     <div className="max-w-lg rounded overflow-hidden shadow-lg">
       <div className="p-12">
         <div className="font-bold text-xl mb-4">{question.text}</div>
         <img className="mb-4 w-full" src={question.media.url} alt={question.text} />
-        <form>
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            setRadioState(event.target.elements['answers'].value);
+          }}
+        >
           {answers.map((answer) => (
             <label key={uuidv4()} className="md:w-2/3 block text-gray-500 font-bold">
               <input

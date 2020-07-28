@@ -10,7 +10,6 @@ export const App = () => {
       .then((res) => res.json())
       .then(
         (result) => {
-          console.log(result);
           setKnowledgeBlocks(result);
         },
         (error) => {
