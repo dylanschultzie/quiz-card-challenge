@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 export const KnowledgeCheck = ({ answers, feedback, question, selectedIndex, answerSubmitted }) => {
   const [radioState, setRadioState] = useState(selectedIndex);
   const [submitted, setSubmitted] = useState(answerSubmitted);
+  // TODO - there's an issue with hitting submit immediately on load.
 
   const isCorrect = (index) => {
     return answers[index].isCorrect;
