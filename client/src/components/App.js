@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { KnowledgeCheck } from './KnowledgeCheck';
-import { v4 as uuidv4 } from 'uuid';
 
 export const App = () => {
   const [knowledgeBlocks, setKnowledgeBlocks] = useState([]);
@@ -22,7 +21,7 @@ export const App = () => {
     <div className="container mx-auto">
       <div className="flex justify-center py-5">
         {knowledgeBlocks.map((block) => (
-          <KnowledgeCheck key={uuidv4()} {...block} />
+          <KnowledgeCheck key={block.question} {...block} />
         ))}
       </div>
     </div>

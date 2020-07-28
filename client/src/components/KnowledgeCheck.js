@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 export const KnowledgeCheck = ({ answers, feedback, question }) => {
   const [radioState, setRadioState] = useState('');
   const [submitted, setSubmitted] = useState(false);
+
+  const isCorrect = (index) => {
+    return answers[index].isCorrect;
+  };
 
   return (
     <div className="max-w-lg rounded overflow-hidden shadow-lg">
@@ -16,17 +19,18 @@ export const KnowledgeCheck = ({ answers, feedback, question }) => {
             event.preventDefault();
           }}
         >
-          {answers.map((answer) => (
-            <label key={uuidv4()} className="md:w-2/3 block text-gray-500 font-bold">
+          {answers.map((answer, index) => (
+            <label key={index} className="md:w-2/3 block text-gray-500 font-bold">
               <input
                 className="mr-8 leading-tight"
                 type="radio"
                 name="answers"
-                value={answer.text}
-                checked={answer.text === radioState}
+                value={index}
+                checked={index === parseInt(radioState)}
                 onChange={(event) => {
-                  setRadioState(event.target.value);
-                  event.preventDefault();
+                  if (!submitted) {
+                    setRadioState(event.target.value);
+                  }
                 }}
               />
               <span className="text-gray-700 text-base">{answer.text}</span>
@@ -41,10 +45,10 @@ export const KnowledgeCheck = ({ answers, feedback, question }) => {
           ) : (
             <div>
               <div className="justify-center">
-                <p>Correct or not?</p>
+                <p>{isCorrect(radioState) ? 'Correct!' : 'Incorrect'}</p>
                 <p>{feedback}</p>
               </div>
-              <div className="w-full">
+              <div className="flex justify-center">
                 <button
                   className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
                   onClick={(event) => {
