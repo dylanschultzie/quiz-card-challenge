@@ -2,6 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const fs = require('fs');
+const db = require('./db');
 
 function server() {
   const app = express();
@@ -18,6 +20,20 @@ function server() {
   return app;
 }
 
-if (require.main === module) server().start();
+if (require.main === module) {
+  const expressServer = server().start();
+
+  process.on('SIGINT', () => {
+    console.log('Received kill signal, shutting down gracefully');
+    fs.writeFileSync('./database.json', JSON.stringify(db), 'utf8', (err) => {
+      if (err) {
+        return console.log(err);
+      }
+      expressServer.close(() => {
+        process.exit(0);
+      });
+    });
+  });
+}
 
 module.exports = server;
