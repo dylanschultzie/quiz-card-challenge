@@ -61,6 +61,7 @@ export const KnowledgeCheck = ({
       <div className="p-12">
         <div className="font-bold text-xl mb-4">{question.text}</div>
         <img className="mb-4 w-full" src={question.media.url} alt={question.text} />
+        <hr />
         <form onSubmit={handleSubmit}>
           {answers.map((answer, index) => (
             // Generally I wouldn't use the array index as a key, but since the radio
