@@ -1,6 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-export const KnowledgeCheck = ({ answers, feedback, question, selectedIndex, answerSubmitted }) => {
+export const KnowledgeCheck = ({
+  _id,
+  answers,
+  feedback,
+  question,
+  selectedIndex,
+  answerSubmitted,
+}) => {
   const [radioState, setRadioState] = useState(selectedIndex);
   const [submitted, setSubmitted] = useState(answerSubmitted);
 
@@ -34,6 +41,20 @@ export const KnowledgeCheck = ({ answers, feedback, question, selectedIndex, ans
   const getAnswerStyle = (correct) => {
     return correct ? 'bg-green-500' : 'bg-red-500';
   };
+
+  useEffect(() => {
+    fetch('http://localhost:5000/knowledge-check-blocks', {
+      method: 'PUT',
+      body: JSON.stringify({
+        blockId: _id,
+        selectedIndex: radioState,
+        answerSubmitted: submitted,
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
+  }, [_id, radioState, submitted]);
 
   return (
     <div className="max-w-xlg rounded overflow-hidden shadow-lg">
