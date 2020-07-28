@@ -9,7 +9,9 @@ export const KnowledgeCheck = ({ answers, feedback, question }) => {
   };
 
   const handleSubmit = (event) => {
-    setSubmitted(true);
+    if (radioState) {
+      setSubmitted(true);
+    }
     event.preventDefault();
   };
 
@@ -49,7 +51,11 @@ export const KnowledgeCheck = ({ answers, feedback, question }) => {
           ))}
           {!submitted ? (
             <div className="flex justify-center">
-              <button className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+              <button
+                className={`mt-4 text-white font-bold py-2 px-4 rounded-full ${
+                  radioState !== '' ? 'bg-blue-500 hover:bg-blue-700' : 'bg-gray-500'
+                }`}
+              >
                 Submit
               </button>
             </div>
