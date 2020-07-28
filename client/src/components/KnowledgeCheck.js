@@ -25,7 +25,6 @@ export const KnowledgeCheck = ({
   const handleRetake = (event) => {
     setSubmitted(false);
     setRadioState('');
-    event.preventDefault();
   };
 
   const handleRadioSelect = (event) => {
@@ -104,6 +103,7 @@ export const KnowledgeCheck = ({
               </div>
               <div className="flex justify-center my-4">
                 <button
+                  type="button"
                   className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
                   onClick={handleRetake}
                 >
