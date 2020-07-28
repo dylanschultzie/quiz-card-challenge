@@ -26,7 +26,7 @@ export const KnowledgeCheck = ({ answers, feedback, question }) => {
   };
 
   return (
-    <div className="max-w-lg rounded overflow-hidden shadow-lg">
+    <div className="max-w-xlg rounded overflow-hidden shadow-lg">
       <div className="p-12">
         <div className="font-bold text-xl mb-4">{question.text}</div>
         <img className="mb-4 w-full" src={question.media.url} alt={question.text} />
