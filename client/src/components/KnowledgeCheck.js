@@ -20,6 +20,8 @@ export const KnowledgeCheck = ({ answers, feedback, question }) => {
           }}
         >
           {answers.map((answer, index) => (
+            // Generally I wouldn't use the array index as a key, but since the radio
+            // button list is immutable there's no concern of the list changing
             <label key={index} className="md:w-2/3 block text-gray-500 font-bold">
               <input
                 className="mr-8 leading-tight"
