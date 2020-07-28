@@ -1,27 +1,19 @@
-## Welcome to the Rise Developer Challenge!
+## Welcome to my Rise challenge submission!
 
-### The coding challenge
+I chose to re-implement the Knowledge Check Block.
 
-Your goal is to implement one of Rise's interactive blocks (see [this Rise course](https://rise.articulate.com/share/QNNxptM9l1O6nA-l3BNQdOO-_6dW8prV) for more details).
+### Getting Started
 
-At a minimum, your implementation should:
-1. populate your interactive block's configuration from the provided REST API (see [`/server`](/server))
-1. use `react` for your UI components
-1. persist your interactive block's UI state by extending the provided REST API
+The steps to run the project are as follows:
 
-What you choose to implement from there is up to you. :)
+For the server:
 
-### Implementation notes:
+1. Navigate to the server directory: `cd server`
+1. Install node modules: `npm i`
+1. Run the server (on PORT 5000): `npm start`
 
-- your interactive block implementation should live in the [`/client`](/client) directory and have its own `package.json`, `node_modules`, etc.
-- feel free to bootstrap your solution with [create-react-app](https://github.com/facebookincubator/create-react-app) (or whatever tools you prefer)
-- the beginnings of a REST API lives in [`/server`](/server) and is reachable at http://localhost:5000
-  - the REST API currently uses variables as a makeshift in-memory database
+For the client (ideally in a separate terminal):
 
-### Getting started
-
-To get the REST API up and running on your dev machine:
-
-1. `cd server`
-1. `yarn install` (or `npm install`)
-1. `yarn start` (or `npm start`)
+1. Navigate to the client directory: `cd client`
+1. Install node modules: `npm i`
+1. Run the client (on PORT 3000): `npm start`
