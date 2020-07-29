@@ -19,11 +19,11 @@ export const App = () => {
 
   return (
     <div className="container mx-auto">
-      <div className="flex justify-center py-5">
-        {knowledgeBlocks.map((block) => (
-          <KnowledgeCheck key={block.question} {...block} />
-        ))}
-      </div>
+      {knowledgeBlocks.map((block) => (
+        <div key={block._id} className="flex justify-center mx-auto py-5 lg:max-w-3xl">
+          <KnowledgeCheck key={block._id} {...block} />
+        </div>
+      ))}
     </div>
   );
 };
